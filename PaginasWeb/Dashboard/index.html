@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/user-cog-solid.svg" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    <title>Administrador</title>
+</head>
+<body>
+    <input type="checkbox" name="" id="nav-toggle">
+    <div class="sidebar">
+        <div class="sidebar-brand">
+            <h2><i class="fas fa-user-secret"></i> <span>Administrador</span></h2>
+        </div>
+        <div class="sidebar-menu">
+            <ul>
+                <li>
+                    <a href="" class="active">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <i class="fas fa-users"></i>
+                        <span>Customers</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Projects</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <i class="fas fa-folder-open"></i>
+                        <span>Orders</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <i class="fas fa-boxes"></i>
+                        <span>Inventory</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <i class="fas fa-user-circle"></i>
+                        <span>Accounts</span>
+                    </a>
+                </li>                
+                <li>
+                    <a href="">
+                        <i class="fas fa-tasks"></i>
+                        <span>Tasks</span>
+                    </a>
+                </li>                
+            </ul>
+        </div>        
+    </div>
+    <div class="main-content">
+        <header>
+            <h2 class="header-title">
+                <label for="nav-toggle">
+                    <i class="fas fa-bars"></i>
+                </label>
+                Brand
+            </h2>
+            <div class="search-wrapper">
+                <label for="">
+                    <i class="fas fa-search"></i>                    
+                    <input type="search" name="" placeholder="Search here" id="">
+                </label>
+            </div>
+            <div class="user-wrapper">
+                <img src="img/dog.jpg" width="40px" height="40px" alt="">
+                <div>
+                    <h4>Boris Flores</h4>
+                    <small>Super Admin</small> 
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="cards">
+                <div class="card-single">
+                    <div>
+                        <h1>54</h1>
+                        <span>Customers</span>
+                    </div>
+                    <div>
+                        <i class="fas fa-users"></i>
+                    </div>
+                </div>
+                <div class="card-single">
+                    <div>
+                        <h1>79</h1>
+                        <span>Projects</span>
+                    </div>
+                    <div>
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                </div>
+                <div class="card-single">
+                    <div>
+                        <h1>124</h1>
+                        <span>Orders</span>
+                    </div>
+                    <div>
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                </div>
+                <div class="card-single">
+                    <div>
+                        <h1>$6k</h1>
+                        <span>Income</span>
+                    </div>
+                    <div>
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="recent-grid">
+                <div class="projects">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Recent Projects</h3>
+                            <button>See all <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table width="100%">
+                                    <thead>
+                                        <tr>
+                                            <td>Project Title</td>
+                                            <td>Department</td>
+                                            <td>Status</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Ushop app</td>
+                                            <td>UI Team</td>
+                                            <td>
+                                                <span class="status purple"></span>
+                                                review
+                                            </td>                                        
+                                        </tr>
+                                        <tr>
+                                            <td>Web development</td>
+                                            <td>Frontend</td>
+                                            <td>
+                                                <span class="status pink"></span>
+                                                in progress
+                                            </td>                                        
+                                        </tr>
+                                        <tr>
+                                            <td>Ushop app</td>
+                                            <td>Mobile Team</td>
+                                            <td>
+                                                <span class="status orange"></span>
+                                                pending
+                                            </td>                                        
+                                        </tr>
+                                        <tr>
+                                            <td>Ushop app</td>
+                                            <td>UI Team</td>
+                                            <td>
+                                                <span class="status purple"></span>
+                                                review
+                                            </td>                                        
+                                        </tr>
+                                        <tr>
+                                            <td>Web development</td>
+                                            <td>Frontend</td>
+                                            <td>
+                                                <span class="status pink"></span>
+                                                in progress
+                                            </td>                                        
+                                        </tr>
+                                        <tr>
+                                            <td>Ushop app</td>
+                                            <td>Mobile Team</td>
+                                            <td>
+                                                <span class="status orange"></span>
+                                                pending
+                                            </td>                                        
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="customers">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>New Customers</h3>
+                            <button>See all <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                        <div class="card-body">
+                            <div class="customer">
+                                <div class="info">
+                                        <img src="img/dog.jpg" alt="" width="40px" height="40px">
+                                    <div>
+                                        <h4>Boris Flores</h4>
+                                        <small>CEP Excerpt</small>
+                                    </div>
+                                </div>
+                                <div class="contact">
+                                    <i class="fas fa-user"></i>
+                                    <i class="fas fa-comments"></i>
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                            </div>
+                            <div class="customer">
+                                <div class="info">
+                                        <img src="img/dog.jpg" alt="" width="40px" height="40px">
+                                    <div>
+                                        <h4>Boris Flores</h4>
+                                        <small>CEP Excerpt</small>
+                                    </div>
+                                </div>
+                                <div class="contact">
+                                    <i class="fas fa-user"></i>
+                                    <i class="fas fa-comments"></i>
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                            </div>
+                            <div class="customer">
+                                <div class="info">
+                                        <img src="img/dog.jpg" alt="" width="40px" height="40px">
+                                    <div>
+                                        <h4>Boris Flores</h4>
+                                        <small>CEP Excerpt</small>
+                                    </div>
+                                </div>
+                                <div class="contact">
+                                    <i class="fas fa-user"></i>
+                                    <i class="fas fa-comments"></i>
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                            </div>
+                            <div class="customer">
+                                <div class="info">
+                                        <img src="img/dog.jpg" alt="" width="40px" height="40px">
+                                    <div>
+                                        <h4>Boris Flores</h4>
+                                        <small>CEP Excerpt</small>
+                                    </div>
+                                </div>
+                                <div class="contact">
+                                    <i class="fas fa-user"></i>
+                                    <i class="fas fa-comments"></i>
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                            </div>
+                            <div class="customer">
+                                <div class="info">
+                                        <img src="img/dog.jpg" alt="" width="40px" height="40px">
+                                    <div>
+                                        <h4>Boris Flores</h4>
+                                        <small>CEP Excerpt</small>
+                                    </div>
+                                </div>
+                                <div class="contact">
+                                    <i class="fas fa-user"></i>
+                                    <i class="fas fa-comments"></i>
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                            </div>                                                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PowerBI</title>
+    <style>
+      * {
+        font-size: 1.2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Aprendiendo PowerBI</h1>
+    <ul>
+      <li>
+        DAX(Data Analysis Expressions): es el lenguaje de consulta de Powert Bi
+        y tambien se pued hacer consulta a traves de query editor
+      </li>
+      <li>
+        Buenas practicas de Modelado de Datos *
+        <ul>
+          <li>
+            Entidad de Negocio = Tabla Tablas => Existen 2 tipos: *
+            Fact(hechos): Eventos Medidos *Dim(Dimensiones): Utilizados para
+            segmentar tablas [que, quien, como, cuando, donde]
+          </li>
+        </ul>
+      </li>
+      <li>
+        Las tablas se pueden estructura en estrella o de forma horizontal,
+        siendo el fact el principal que se relacionara con el resto de tablas
+      </li>
+      <li>
+        A la hora de actualizar en Refresh se actualizara todas las tablas, para
+        que eso no suceda debes de darle en TransformData y luego click derecho
+        en la tabla que no quieres que se refresque
+      </li>
+      <li>Agregar Measure(medida) = agregar calculo</li>
+      <li>
+        Para mover los measures creados debemos de hacerlo desde la parte de
+        Model, seleccionandolo y arrastrandolo a la tabla nueva
+      </li>
+      <li>BLANK() =>Me permite poner una posicion en blanco</li>
+      <li>
+        <b>Funciones de Fecha</b>
+        <ul>
+          <li>Mes = MONTH(nombreTabla[nombreCampo])</li>
+          <li>Trimestre = QUARTER(nombreTabla[nombreCampo])</li>
+          <li>Año = YEAR(nombreTabla[nombreCampo])</li>
+          <li>Dia = DAY(nombreTabla[nombreCampo])</li>
+          <li>numeroSemanaAño = WEEKNUM(nombreTabla[nombreCampo])</li>
+          <li>numeroDiaSemana = WEEKDAY(nombreTabla[nombreCampo])</li>
+        </ul>
+      </li>
+      <li>
+        <b>Funciones de Logicas y Condicionales</b>
+        <ul>
+          <li>
+            nombreColumna = IF(nombreTabla[nombreCampo]>2,"Es mayor 2","No es
+            mayor 2")
+          </li>
+          <li>
+            FinSemana =
+            IF(OR(DimCalendar[diaSemana]=6,DimCalendar[diaSemana]=7),"Fin de
+            Semana","Dia Laboral") =>Tambien es OR() = ||
+          </li>
+          <li>
+            FinSemana = IF(DimCalendar[diaSemana] in {6,7},"Fin de Semana","Dia
+            Laboral")
+          </li>
+          <li>
+            MalaSuerte = IF(DimCalendar[CalendarDayOfWeekLabel]="Tuesday" &&
+            DimCalendar[Dia]=13,"Mala Suerte","Dia Normal")
+          </li>
+        </ul>
+      </li>
+      <li>
+        <b>Relaciones de Texto(Concatenacion)</b>
+        <ul>
+          <li>
+            UbicacionCompleta = DimGeography[RegionCountryName] & " "
+            &DimGeography[ContinentName]
+          </li>
+          <li>Trimestre = "Trimestre N°" & QUARTER(DimCalendar[DateKey])</li>
+          <li>
+            MesCorto = LEFT(DimCalendar[CalendarMonthLabel],3) =>Toma los
+            primeros 3 caracteres
+          </li>
+          <li>UbicacionCompleta = UPPER(DimGeography[RegionCountryName])</li>
+          <li>UbicacionCompleta = LOWER(DimGeography[RegionCountryName])</li>
+          <li>Tienda = SUBSTITUTE(DimStores[StoreName],"Store","Tienda")</li>
+        </ul>
+      </li>
+
+      <li>
+        <b>Funcion Related y Matematica</b>
+        <ul>
+          <li>
+            Ubicacion Fisica = RELATED(DimGeography[UbicacionCompleta]) =>Asi
+            traemos datos de otra tabla relacionada
+          </li>
+          <li>PU Promedio = AVERAGE(DimProduct[UnitPrice])</li>
+        </ul>
+      </li>
+      <li>
+        <b>Funcion Contar</b>
+        <ul>
+          <li>
+            Cantidad Tiendas = COUNT(DimStores[StoreKey]) =>Cuenta todo tipo de
+            registro
+          </li>
+          <li>
+            Cantidad Tiendas = COUNTA(DimStores[StoreKey]) =>Cuenta solo
+            registros llenos no en blanco
+          </li>
+          <li>
+            Cantidad Tienda con Ventas = DISTINCTCOUNT(FactSales[StoreKey])
+            =>Cuenta solo registros llenos no en blanco
+          </li>
+          <li>
+            Cantidad Regiones en Blanco =
+            COUNTBLANK(DimGeography[RegionCountryName]) =>Cuenta solo registros
+            en blanco
+          </li>
+          <li>
+            Cantidad Regiones 2 = COUNTROWS(DimGeography) =>Cuenta la cantidad
+            de filas solo de tablas
+          </li>
+        </ul>
+      </li>
+      <li>
+        <b>Funcion Calculate</b>
+        <ul>
+          <li>
+            Total Ordenes Devuelta = CALCULATE([Total
+            Ordenes],FactSales[ReturnQuantity]>0) =>total ordenes es un measure
+          </li>
+        </ul>
+      </li>
+      <li>
+        <b>Funcion ALL y Filter </b>
+        <ul>
+          <li>
+            All Total Ordenes Globales = CALCULATE([Total
+            Ordenes],ALL(FactSales)) =>El all no toma en cuenta los filtros
+          </li>
+          <li>
+            Total Ordenes Devueltas Multiples Filter = CALCULATE([Total
+            Ordenes],FILTER(FactSales,FactSales[TipoDevolucion]="Multiple"))
+            =>Filter solo devuelve valores tomando en cuenta el filtro el resto
+            sale n blank lo ignora y
+          </li>
+          <li></li>
+          <li></li>
+        </ul>
+      </li>
+      <li>
+        <b>Funcion Calculate</b>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </li>
+      <li>
+        <b>Funcion Calculate</b>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </li>
+      <li>
+        <b>Funcion Calculate</b>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </li>
+    </ul>
+  </body>
+</html>

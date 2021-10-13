@@ -1,0 +1,4 @@
+.Se uso JSON Server para levantar una API REST falsa
+.Para usar el JSON SERVER primero debes crear tu bd en json con el nombre de db.json en assets
+=====>  npx json-server --watch db.json --port 3000
+.Puedes cambiar el numero de puerto

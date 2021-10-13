@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./assets/include-html.js"></script>
+    <style>
+      html {
+        box-sizing: border-box;
+        font-family: serif;
+        font-style: 1rem;
+      }
+      *,
+      *:before,
+      *::after {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      img {
+        max-height: 100%;
+        height: auto;
+      }
+      main {
+        /*Asi footer siermpre estara abajo*/
+        flex-grow: 1;
+      }
+      .container {
+        margin: 0 auto;
+        max-width: 992px;
+      }
+      .header {
+        padding: 0.5rem;
+        background-color: antiquewhite;
+      }
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .logo img {
+        width: 3.2rem;
+        height: auto;
+      }
+      .menu {
+        display: flex;
+        justify-content: space-between;
+        font-size: 115%;
+      }
+      .menu a {
+        text-decoration: none;
+        padding: 0 1vw;
+        color: chocolate;
+        transition: all 0.3s ease-in-out;
+      }
+      .menu a:hover {
+        opacity: 75%;
+      }
+      footer {
+        background: rgb(148, 144, 144);
+      }
+      .footer-container {
+        text-align: center;
+      }
+      .footer-container p small {
+        font-size: 120%;
+        font-weight: bold;
+        color: aliceblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div data-include="./assets/header.html"></div>
+    <main class="container"></main>
+    <div data-include="./assets/footer.html"></div>
+    <script>
+      let d = document,
+        $main = d.querySelector("main");
+      const getHTML = (options) => {
+        let { url, success, error } = options;
+
+        const xhr = new XMLHttpRequest();
+        xhr.addEventListener("load", (e) => {
+          if (xhr.status >= 200 && xhr.status < 300) {
+            let html = xhr.responseText;
+            success(html);
+          } else {
+            let message = xhr.statusText || "Ocurrio un Error";
+            error(`Error: ${xhr.status}: ${message}`);
+          }
+        });
+        xhr.open("GET", url);
+        xhr.setRequestHeader("Content-type", "text/html;charset=utf-8");
+        xhr.send();
+      };
+      d.addEventListener("DOMContentLoaded", (e) => {
+        getHTML({
+          url: "./assets/home.html",
+          success: (html) => ($main.innerHTML = html),
+          error: (err) => ($main.innerHTML = `<h1>${err}</h1>`),
+        });
+      });
+      d.addEventListener("click", (e) => {
+        if (e.target.matches(".menu a")) {
+          e.preventDefault();
+          getHTML({
+            url: e.target.href,
+            success: (html) => ($main.innerHTML = html),
+            error: (err) => ($main.innerHTML = `<h1>${err}</h1>`),
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

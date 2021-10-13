@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
+
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      h1 {
+        text-align: center;
+      }
+      h3 {
+        margin: 3rem 0 2rem 2.5rem;
+      }
+      form > input {
+        margin: 0.7rem 1rem;
+      }
+      .crud-fetch {
+        display: flex;
+        margin-left: 3rem;
+      }
+      table {
+        width: 60%;
+        margin-left: 5rem;
+      }
+      table > thead {
+        background: #777;
+        color: #fff;
+        text-align: center;
+      }
+      table {
+        line-height: 2rem;
+      }
+      table > tbody {
+        text-align: center;
+      }
+      button {
+        padding: 0.1rem 1rem;
+        border: 0;
+        color: #fff;
+        border-radius: 0.4rem;
+      }
+      button:first-child {
+        background: green;
+      }
+      button:last-child {
+        background: red;
+      }
+      img {
+        height: 3rem;
+        width: 2.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>CRUD con API Fetch</h1>
+    <h3>Metodo GET - POST - PUT - DELETE con API FETCH y JSON-SERVER</h3>
+    <section class="crud-fetch">
+      <form action="" class="crud-form">
+        <h4 class="title">Insertar Nuevo Usuario</h4>
+        <input type="text" name="nombre" placeholder="First Name..." /><br />
+        <input type="text" name="apellido" placeholder="Last Name..." /><br />
+        <input type="text" name="correo" placeholder="Email Name..." /><br />
+        <input type="text" name="avatar" placeholder="Link Avatar..." /><br />
+        <input type="submit" />
+        <input type="hidden" name="id" />
+      </form>
+
+      <table class="crud-table">
+        <thead>
+          <tr>
+            <th colspan="6">Lista de Usuarios</th>
+          </tr>
+          <tr>
+            <th>Id</th>
+            <th>Avatar</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>E-mail</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <template id="crud-template">
+      <tr>
+        <td class="id"></td>
+        <td class="avatar"><img class="avatar_img" src="" alt="" /></td>
+        <td class="fname"></td>
+        <td class="lname"></td>
+        <td class="email"></td>
+        <td>
+          <button class="edit">Editar</button>
+          <button class="delete">Eliminar</button>
+        </td>
+      </tr>
+    </template>
+
+    <script>
+      const $table = document.querySelector(".crud-table");
+      const $form = document.querySelector(".crud-form");
+      const $title = document.querySelector(".title");
+      const $template = document.getElementById("crud-template").content;
+      const $fragment = document.createDocumentFragment();
+
+      const getAll = async () => {
+        try {
+          const res = await fetch("http://localhost:3000/data");
+          let json = await res.json();
+
+          json.forEach((el) => {
+            $template.querySelector(".id").textContent = el.id;
+            $template.querySelector(".avatar_img").src = el.avatar;
+            $template.querySelector(".fname").textContent = el.first_name;
+            $template.querySelector(".lname").textContent = el.last_name;
+            $template.querySelector(".email").textContent = el.email;
+
+            $template.querySelector(".edit").dataset.id = el.id;
+            $template.querySelector(".edit").dataset.first_name = el.first_name;
+            $template.querySelector(".edit").dataset.last_name = el.last_name;
+            $template.querySelector(".edit").dataset.email = el.email;
+            $template.querySelector(".edit").dataset.avatar = el.avatar;
+
+            $template.querySelector(".delete").dataset.id = el.id;
+
+            let $clone = document.importNode($template, true);
+            $fragment.appendChild($clone);
+          });
+          $table.querySelector("tbody").appendChild($fragment);
+          if (!res.ok) throw { status: res.status, statusText: res.statusText };
+        } catch (err) {
+          $table.insertAdjacentHTML(
+            "afterend",
+            `<p><b>Error: ${err.status}</b></p>`
+          );
+        }
+      };
+      document.addEventListener("DOMContentLoaded", getAll);
+
+      document.addEventListener("submit", async (e) => {
+        if (e.target === $form) {
+          e.preventDefault();
+          if (!e.target.id.value) {
+            try {
+              //POST
+              let options = {
+                method: "POST",
+                headers: {
+                  "Content-type": "application/json;charset=utf-8",
+                },
+                body: JSON.stringify({
+                  email: e.target.correo.value,
+                  first_name: e.target.nombre.value,
+                  last_name: e.target.apellido.value,
+                  avatar: e.target.avatar.value,
+                }),
+              };
+              const res = await fetch("http://localhost:3000/data", options);
+              const json = await res.json();
+
+              location.reload();
+
+              if (!res.ok)
+                throw { status: res.status, statusText: res.statusText };
+            } catch (err) {
+              let message = err.statusText || "Ocurrio un error";
+              $form.insertAdjacentHTML(
+                "afterend",
+                `<p><b>${err.status} - ${message}</b></p>`
+              );
+            }
+          } else {
+            //METODO PUT
+            try {
+              let options = {
+                method: "PUT",
+                headers: {
+                  "Content-type": "application/json;charset=utf-8",
+                },
+                body: JSON.stringify({
+                  first_name: e.target.nombre.value,
+                  last_name: e.target.apellido.value,
+                  email: e.target.correo.value,
+                  avatar: e.target.avatar.value,
+                }),
+              };
+              const res = await fetch(
+                `http://localhost:3000/data/${e.target.id.value}`,
+                options
+              );
+              const json = await res.json();
+              if (!res.ok) {
+                throw { status: res.status, statusText: res.statusText };
+              }
+              location.reload();
+              alert("Usuario Actualiado");
+            } catch (err) {
+              let message = err.statusText || "Ocurrio un error";
+              $form.insertAdjacentHTML(
+                "afterend",
+                `<p><b>${err.status} - ${message}</b></p>`
+              );
+            }
+          }
+        }
+      });
+      document.addEventListener("click", async (e) => {
+        try {
+          if (e.target.matches(".edit")) {
+            $title.textContent = "Editar Usuario";
+            $form.nombre.value = e.target.dataset.first_name;
+            $form.apellido.value = e.target.dataset.last_name;
+            $form.correo.value = e.target.dataset.email;
+            $form.avatar.value = e.target.dataset.avatar;
+            $form.id.value = e.target.dataset.id;
+          } else if (e.target.matches(".delete")) {
+            let pregunta = confirm(
+              `¿Estas seguro de Eliminar usuario con id: ${e.target.dataset.id}`
+            );
+            if (pregunta) {
+              let options = {
+                method: "DELETE",
+                headers: { "Content-type": "application/json;charset=utf-8" },
+                body: null,
+              };
+              const res = await fetch(
+                `http://localhost:3000/data/${e.target.dataset.id}`,
+                options
+              );
+              const json = await res.json();
+              if (!res.ok) {
+                throw { status: res.status, statusText: res.statusText };
+              }
+              alert("Usuario eliminado");
+              location.reload();
+            }
+          }
+        } catch (err) {
+          let message = err.statusText || "Ocurrio un error";
+          $form.insertAdjacentHTML(
+            "afterend",
+            `<p><b>${err.status} - ${message}</b></p>`
+          );
+        }
+      });
+    </script>
+  </body>
+</html>

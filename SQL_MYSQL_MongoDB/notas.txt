@@ -1,0 +1,1 @@
+Para el uso de Ñ en base de datos se crea la bd con utf8_general_ci

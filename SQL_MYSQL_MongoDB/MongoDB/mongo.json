@@ -1,0 +1,14 @@
+{
+    "nombre": "laptop",
+    "precio": 40.2,
+    "active": false,    
+    "somedata":[1,"a"],
+    "factucturer": {
+        "name": "dell",
+        "version": "xps",
+        "location": {
+            "city": "usa",
+            "address": "asuncion 429"
+        }
+    }
+}

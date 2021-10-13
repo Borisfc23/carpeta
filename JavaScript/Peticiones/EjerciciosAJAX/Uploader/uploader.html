@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Uploader con Ajax</title>
+    <style>
+      html {
+        box-sizing: border-box;
+        font-family: sans-serif;
+        font-size: 1rem;
+      }
+      *::before,
+      *::after {
+        box-sizing: inherit;
+      }
+      main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        min-height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <!-- con multiple puede subir mas de 1 archivo -->
+      <input type="file" id="files" name="files" multiple />
+    </main>
+
+    <script>
+      const d = document,
+        $main = d.querySelector("main"),
+        $files = d.getElementById("files");
+      const uploader = (files) => {
+        console.log(files);
+        const xhr = new XMLHttpRequest(),
+          formData = new FormData();
+      };
+      d.addEventListener("change", (e) => {
+        if (e.target === $files) {
+          console.log(e.target.files); //El files es un atributo del objeto files
+          const files = Array.from(e.target.files); //El Array.from vuelve iterable un objeto json
+          files.forEach((el) => uploader(el));
+        }
+      });
+    </script>
+  </body>
+</html>

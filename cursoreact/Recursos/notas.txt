@@ -1,0 +1,36 @@
+BABEL: Es un transcompilador que te permite pasar el codigo moderno de js a una version mas antigua y de est modo sea
+    compatible con otros navegadores. Tambien te permite crear componentes mas rapido
+
+JSX: Une js con XML permitiendo escribir un codigo mas limpio sin tantas repeticiones.
+
+SPA: Single page application, es una  web de una sola pagina donde su contenido es dinamico
+
+PWA: Progressive Web Application, son aplicaciones entre web y mobile simulando asi una aplicacion nativa.
+    Caracteristicas: detectables, instalables, correr sin conexion, acceden a los recursos del dispositivo, responsivas, seguras
+    pesan poco.
+
+Service Worker: Caracteristicas de navegadores modernos que nos permite ser un intermediario entre  
+                nuestra aplicacion, el hardaware y el cliente.
+            
+Archivo Manifest: Contiene la configuracion de la aplicacion como el nombre de la app y su contenido.              
+    npx pwa-asset-generator favicon.png ./assets -m manifest.json -i index.html
+
+CRA: Create React App => npx create-react-app nombre_pryecto
+                       =>yarn start 
+                       =>yarn build    se pone a antes de desplegar tu app en produccion(subirlo a un servidor)
+                       =>Nota: si vas a subir tu app a githubpages primero poner: yarn build, luego renombrar la carpeta creada build a docs,
+                                despues cambiar el master a main y el root a docs
+                       =>npx react-create-app name_app --template cra-template-pwa        
+
+PROPS:Son las propiedades y Nos permiten la comunicacion entre componentes                       
+
+Helpers : Permite poner las funciones puras de jscript
+
+Hooks: Permite manejar estados en los componentes, enganchandolos a las caracteristicas de react.
+
+useEffect : Es la combinacion de componentDidMount()-montaje , componentDidUpdate()-actualizaciones y componentWillUnMount()-desmontaje
+            El useEffect se ejecuta cada vez k se renderiza cuando no utilizas el segundo parametro k es la dependencia[]
+
+Refencias: Se usa en react para el manejo del DOM            
+
+Para usar sass en react primero debes instalar el paquete con: npm i node-sass,  luego importas tu scss a tu componente

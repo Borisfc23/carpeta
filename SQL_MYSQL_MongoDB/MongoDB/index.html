@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MongoDB</title>
+    <style>        
+        *{
+            font-family: serif;
+            margin: 0;
+            font-size: 20px;
+        }
+        h1{
+            font-size: 40px;
+        }
+        body{
+            padding: 30px 50px;                                                                                                                 
+            line-height: 40px;
+        }
+        .img{
+            width: 800px;
+            height: 400px;  
+            margin: 20px auto;            
+        }
+        img{                
+            width: 100%;                        
+        }
+    </style>
+</head>
+<body>
+    <h1>MongoDB</h1>    
+    <p>Posee un esqeuma no fijo donde se puede insertar diferentes tipos de datos sin ser rachazado o k salga msj de error</p>
+    <span>Tranforma los objetos de formato JSON a BSON(binario) para el mejor manejo de los datos</span>
+    <p>
+        MongoDB (del inglés humongous, "enorme") es un sistema de base de datos NoSQL, orientado a documentos y de código abierto.
+En lugar de guardar los datos en tablas, tal y como se hace en las bases de datos relacionales, MongoDB guarda estructuras de datos BSON (una especificación
+ similar a JSON) con un esquema dinámico, haciendo que la integración de los datos en ciertas aplicaciones sea más fácil y rápida. 
+    </p>
+    <div class="img">
+        <img src="foto1.png" alt="">
+    </div>
+    <br>
+    <h2>Para Iniciar MongoDB</h2>
+    <p>Primero abrimos cmd y luego ponemos mongod , se ejecutara el servidor y lo dejamos abierto</p>
+    <p>Segundo paso abri otro cmd como administrador y ejecutar el comando mongo</p>
+    <p>En el segundo cmd se podra crear las BD de mongodb</p>
+    <p>Los operadores van acompañado del simbolo($) como x ejm $set,$type,$gt,$inc,$rename</p>
+    <p>Los metodos van acompañado de los parentesis() como x ejm find(), update(), count(), limit()</p>
+    <h2>Funciones</h2>
+    <span>DataBase: test, es la base de datos por defecto de mongodb</span>
+    <ul>                    
+        <!-- Para el ejemplo usaremos como base de datos test -->
+
+        <!-- MONSTRAR BASE DE DATOS -->
+        <li><b>show dbs</b> =>Muestra todas las bases de datos</li>        
+        <li><b>db</b> => Muestra la base de datos que estamos usando</li>
+
+        <!--CREAR Y BORRAR BASE DE DATOS-->
+        <li><b>use database</b> => Sirve para crear y/o usar la base de datos</li>
+        <li><b>db.dropDatabase()</b> =>Sirve para eliminar la base de datos actual</li>
+
+        <!--CREAR  Y RENOMBRAR COLECCION-->
+        <li><b>db.createCollection("Nombre_de_la_coleccion")</b> =>Forma de crear coleciones</li>
+        <li><b>db.nombre_coleccion.renameCollection("Nombre_nuevo_coleccion")</b> =>Cambiar nombre de colecion</li>
+
+        <!--MOSTRAR  Y BORRAR COLECCIONES-->
+        <li><b>show collections</b> => Muestra las colecciones</li>        
+        <li><b>db.nombre_coleccion.drop()</b> =>Se elimina toda la coleccion elegida</li>
+        
+        <!--BORRAR TODO EL DOCUMENTO DENTRO DE LA COLECCION-->
+        <li><b>b.nombre_coleccion.deleteOne({_id:1})</b>=>Se borra el documento con el filtro</li>
+        <li><b>b.nombre_coleccion.deleteMany({})</b>=>Se borra todo los documentos dentro de la collecion especificada</li>
+        <li><b>b.nombre_coleccion.deleteMany({Peli:"Hola",anio:2000})</b>=>Se borra todo los documentos que coincida con cualquiera de los filtros</li>
+
+        <!--INSERTAR DOCUMENTOS DENTRO DE MI COLECCION-->
+        <li><b>db.nombre_coleccion.insertOne({"name":"laptop"})</b> =>Insertamos una coleccion y dentro de parentesis un documento</li>
+        <li><b>db.nombre_coleccion.insert([{"name":"laptop"},{"name":"mouse"}])</b> =>Insertamos varias colecciones y dentro de parentesis un documento</li>
+        <li><b>db.nombre_coleccion.insertMany([{"name":"laptop"},{"name":"mouse"}])</b> =>Insertamos varias colecciones y dentro de parentesis un documento</li>
+
+        <!--BORRAR EL DOCUMENTO SELECCIONADO-->
+        <li><b>db.nombre_coleccion.insert([{_id:2,Pelicula:"Harry Poter"},{_id:3,Pelicula:"One Piece"}],{ordered:false})</b>=>Con ordered false si hay error agrega el k no falla, si se pone true no agrega nignuna en caso de error</li>
+        
+        <!--BORRAR EL DOCUMENTO SELECCIONADO-->
+        <li><b>db.nombre_coleccion.remove({"id":123})</b> =>Se elimina solo el documento elegido</li>
+
+        <!--MOSTRAR COLECCION X FILTROS-->
+        <li><b>db.nombre_coleccion.find().pretty()</b> =>Muestra todos los documentos alojados en la coleccion</li>
+        <li><b>db.nombre_coleccion.find().limit(2)</b> =>Muestra los 2 primeros documentos alojados en la coleccion</li>
+        <li><b>db.nombre_coleccion.find()[n]</b> => Accede a la posicion que indiques en el n.</li>        
+        <li><b>db.nombre_coleccion.find().count()</b> =>Cuenta la cantidad de documentos alojados en la coleccion</li>
+        <li><b>db.nombre_coleccion.find({"name":"computadora"}).pretty()</b> =>Muestra el documentos que cumpla con el name</li>
+        <li><b>db.nombre_coleccion.find({"name":"computadora"},{"_id":0}).pretty()</b> =>Muestra el documentos que cumpla con el name y no muestra su id(0 no muestra)</li>
+        <li><b>db.nombre_coleccion.find({"name":"computadora"},{"_id":1}).pretty()</b> =>Muestra el documentos que cumpla con el name y muestra su id(1 si muestra)</li>
+        <li><b>db.nombre_coleccion.find({"name":"computadora"}).sort(name:1).pretty()</b> =>Muestra el documentos ordenado alfabeticamente con el name, ascendente(1) y descendente(-1)</li>
+        <li><b>db.nombre_coleccion.findOne({"name":"computadora"})</b> =>Muestra el primer documento que cumpla con el name</li>        
+        <li><b>db.nombre_collection.find().forEach(element=>print(element.nombre_atributo))</b></li>   
+        <li><b>db.nombre_collection.find({"anio":{$type:"string"}})</b>=>Busca los documentos k se registraron con anio tipo string</li>
+        <li><b>db.nombre_collection.find({anio:{$gt:2015}})</b>=>Busca los documentos k tengan el año mayor a 2015</li>
+        <li><b>db.nombre_collection.find({anio:{$gte:2015}})</b>=>Busca los documentos k tengan el año mayor e igual a 2015</li>
+        <li><b>db.nombre_collection.find({anio:{$lt:2015}})</b>=>Busca los documentos k tengan el año menor a 2015</li>
+        <li><b>db.nombre_collection.find({anio:{$lt:2015}})</b>=>Busca los documentos k tengan el año menor igual a 2015</li>
+        <li><b>db.nombre_collection.find({anio:{$in:[2015,2017,2020]}})</b>=>Busca los documentos k sean del año 2015,2017,2020 puede tomar varios valores</li>
+        <li><b>db.nombre_collection.find({anio:{$nin:[2015,2017,2020]}})</b>=>Busca los documentos k NO sean del año 2015,2017,2020 puede tomar varios valores</li>
+        <li><b>db.nombre_collection.find({$and:[{fec_ini_cdto:{$gte:"2020-02-01"}},{fec_ini_cdto:{$lte:"2020-02-02"}}]})</b>=>El operador $and hace que tenga k coincidir todos los filtros </li>
+        <li><b>db.nombre_collection.find({$or:[{fec_ini_cdto:{$gte:"2020-02-01"}},{fec_ini_cdto:{$lte:"2020-02-02"}}]})</b>=>El operador $or basta k solo coincida un filtro </li>
+        <li><b>db.nombre_collection.find({no_cdtos:{$not:{$lte:350}}})</b>=>Cumple con traer a los que NO son menores de 350, osea niega la condicion</li>
+        <li><b>db.nombre_collection.find({$nor:[{fec_ini_cdto:{$lte:"2020-03-01"}}]})</b>=>Es igual al operador $not solo que aqui se manda como matriz</li>
+        <li><b>db.nombre_collection.find({anio:{$exists:true}})</b>=>Trae solo los documnetos que tengan el campo anio</li>
+        <li><b>db.nombre_collection.find({Pelicula:{$regex:/war/}})</b>=>Trae todos los documentos que contengan war dentro de su valor, siempre va entre //</li>
+        <li><b>db.nombre_collection.find({$expr:{$gte:["$no_clientes","$no_cdtos"]}})</b>=>Crea expresiones donde puedo copara el valor de 2 campos</li>
+        <li><b>db.nombre_collection.find({campo:{$size:4}})</b>=>El $size devuelve el documento que contenga 4 valores en el campo, ojo debe ser matriz</li>
+        <li><b>db.nombre_collection.find({actores:{$all:["actor1","actor2"]}})</b>=>Trae a todos los documentos que contengan a los 2 actores, es similar al operador $and</li>
+        <li><b>db.nombre_collection.find({actores:{$elemMatch:{edad:{$gte:25,$lte:30}}}})</b>=>Busca el filtro dentro de un obeto o matriz, las condiciones dentro del $elemMatch deben de cumplirse</li>
+        <li><b>db.nombre_collection.find().sort({anio:-1,Pelicula:1})</b>=>Ordena dando prioridad de left to right . (1)Ascendente (-1)Descendente</li>
+        <li><b>db.nombre_collection.find().sort({Pelicula:1}).skip(5)</b>=>Primero ordenara y luego proyectara omitiendo los 5 primeros resultados</li>
+        <li><b>db.nombre_colecion.find({"aqui va el filtro"},{actores:{$slice:3}})</b>=>El operador $slice sirve para partir una matriz y solo mostrar la cant k especificas</li>        
+        <li><b>db.nombre_coleccion.findOne({"name":"pedro"}).name_campo_mostrar</b> => Accede al registro con la condicion y solo muestra el valor de la campo</li>
+
+        <!--Proyecciones muestra(1) u oculta(0) campos-->
+        <li><b>db.nombre_coleccion.find({"name":"computadora"},{"name":1,"description":1})</b> =>Muestra el primer documento que cumpla con el name y solo Muestra el Name y description, y con el 0 hace que no se muestre dicho atributo</li>
+
+        <!--Remplaza un documento x otro-->
+        <li><b>db.nombre_collection.replaceOne({"name":"producto"},{"name2":"producto2","name3":"valor3"})</b> =>Remplaza un documento x otro</li>
+        <li><b>db.nombre_collection.replaceOne({"name":"producto"},{"name2":"producto2","name3":"valor3"},{upsert:true})</b> =>Remplaza un documento x otro y si no encuentra lo agrega</li>
+        <li><b>db.nombre_collection.update({"name":"producto"},{"name2":"producto2","precio":222})</b> =>Actualizar solo el primer documento  con coincidencia</li>
+        <li><b>db.nombre_collection.update({"name":"producto"},{$set:{"name1":"producto","precio":222}},{multi:true})</b> =>Actualizar todo los documentos con coincidencia</li>
+        <li><b>db.nombre_collection.update({"campo1":"valor1"},{$set:{"campo2":"valor2"}})</b> =>De esta forma ingresamos mas campos a la coleccion</li>
+        <li><b>db.nombre_collection.update({"campo1":"valor1"},{$set:{"campo2":"valor2"}},{upsert:true})</b> =>De esta forma ingresamos mas campos a la coleccion, si no lo encuentra lo crea</li>
+        <li><b>db.nombre_collection.update({"campo1":"valor1"},{$inc:{"campoNumerico":100}})</b> =>De esta forma el campo numerico incrementa en 100 unidades</li>
+        <li><b>db.nombre_collection.update({"campo1":"valor1"},{$rename:{"campo1":"campo2"}})</b>=>Con $rename cambio el nombre de los campos</li>
+        <li><b>db.nombre_colecion.update({Pelicula:"El libro de la Selva"},{$min:{anio:2000}})</b>=>Va realizar la actualizacion si es k es año especificado es menor al k esta asignado actualmente</li>
+        <li><b>db.nombre_colecion.update({Pelicula:"El libro de la Selva"},{$max:{anio:2000}})</b>=>Va realizar la actualizacion si es k es año especificado es mayor al k esta asignado actualmente</li>
+        <li><b>db.nombre_colecion.update({Pelicula:"El libro de la Selva"},{$mul:{anio:2}})</b>=>Va realizar la actualizacion multiplicando el valor actual con el valor asignado recien</li>
+        <li><b>db.nombre_colecion.update({Pelicula:"Black Widow"},{$unset:{anio:""}})</b>=>Borra el campo que pongas despues del operador $unset, ejm borrara el anio</li>
+
+        <!--CAMPO STOCK CON MATRIZ-->
+        <li><b>db.inventory.insertMany([{"item":"planner","stock":[{"warehouse":"A","qty":40},{"warehouse":"B","qty":5}]}]) </b>=>Se crea una matriz dentro del campo stock</li>
+        <li><b>db.inventory.find({"stock.warehouse":"A"})</b>=>Accedemos a la matriz de sotck y hacemos una busqueda</li>
+        <li><b>db.inventory.find({"stock.0.warehouse":"B"},{"_id":0}) </b>=>El 0 indica la posicion del primer warehouse</li>
+
+        <!--ALMACENAR EN VARIABLES-->
+        <li><b>var Auxiliar = db.patron.findOne({name:"Boris Flores"})._id</b>=>Guardamos el resultado dentro de la variable </li>
+        <li><b>db.address.findOne({nombre_campo:Auxiliar})</b>=>Obtenemos los datos a partir de la variable</li>
+
+        <!--IMPORTAR BD A MONGODB-->
+        <h3>Mongoimport para importar objetos JSON</h3>
+        <p>Para usar debes de instalar mongodb tool database para usar el mongoimport</p>
+        <li><b>mongoimport --db nombre_de_bd --collection nombre_de_coleccion --type csv --headerline --file c:\Users\Boris\ruta_de_bd.csv</b>=>Aqui se importo una bd k esta en un excel</li>
+        
+        <!--FRAMEWORK DE AGREGACION-->
+        <img src="aggregate.JPG" style="width: 400px;height: 300px;" alt="">
+        <li><b> db.nombre_colecion.aggregate([
+            ... {$match:{"no_cdtos":{$gte:352}}}
+            ... ])</b>=>Primera etapa del Frame es la filtracion($match)</li>
+        <li><b>db.nombre_colecion.aggregate([ {$match:{"B_adeudo":"Con adeudo"}}, {$group:{_id:{id_sucursal:"$id_sucursal"},clientes_adeudo:{$sum:"$no_clientes"}}} ])</b>=>Luego entra la ETAPA DE AGRUPAR</li>
+        <li><b>db.pruebaxls.aggregate([ {$match:{"B_adeudo":"Con adeudo"}}, {$group:{_id:{id_sucursal:"$id_sucursal"},clientes_adeudo:{$sum:"$no_clientes"}}}, {$sort:{"clientes_adeudo":-1}} ])</b>=>Luego entra la ETAPA DE ORDENAR</li>
+        <li><b>db.pruebaxls.aggregate([ {$match:{"B_adeudo":"Con adeudo"}}, {$group:{_id:{id_sucursal:"$id_sucursal"},clientes_adeudo:{$sum:"$no_clientes"}}}, {$sort:{"clientes_adeudo":-1}},{$project:{_id:0}} ])</b>=>Con $project selecciona k campo mostrar con 1 y (0)NO MOSTRAR</li>
+        <li><b>db.pruebaxls.aggregate([ {$match:{"B_adeudo":"Con adeudo"}}, {$group:{_id:{id_sucursal:"$id_sucursal"},clientes_adeudo:{$sum:"$no_clientes"}}}, {$sort:{"clientes_adeudo":-1}},{$project:{clientes_adeudo:1,campo_nuevo:{$concat:["Este es un campo", " nuevo"]}}} ])</b>=>El $concat concatena cadenas</li>
+        <!--CREAR USUARIO-->
+        <li><b>db.createUser({
+            user:'dev',
+            pwd:'dev',
+            roles:[{
+                role:'readWrite',
+                db:'todos'
+            }]
+        })</b> =>Se crea usuario</li>
+        <p><b>Ejemplo de JSON</b> <br>
+            
+        {
+            db.products.insert([
+                {
+                    "name": "mouse",
+                    "description": "razer mouse",
+                    "tags": ["computer","gaming"],
+                    "quantity": 14,
+                    "created_at": new Date()
+                },
+                {
+                    "name": "monitor",
+                    "description": "lg monitor",
+                    "tags": ["computer","gaming"],
+                    "quantity": 3,
+                    "created_at": new Date()
+                }
+            ])
+        }
+    </p>     
+    </ul>    
+</body>
+</html>

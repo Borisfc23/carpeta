@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>JSON-Datos Estructurado</h1>
+    <p>JSON es un formato de texto sencillo para el intercambio de datos. Se trata de un subconjunto de la notación literal de objetos de JavaScript, aunque, debido a su amplia adopción como alternativa a XML, se considera un formato independiente del lenguaje.</p>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/JSON_vector_logo.svg/1200px-JSON_vector_logo.svg.png" alt="" style="width: 200px;">
+    <h2>JSON serializado-tipo string</h2>
+    <p>Es una cadena de texto con formato json. De esta forma se envia y recibimos datos a un servidor</p>
+    <h2>JSON deserializado-tipo objeto</h2>
+    <p>En esta forma no lleva bastiks</p>    
+    <script type="text/javascript">
+        const deserializado =  {"variable1":"valor1","variable2":"valor2"};
+        const serializado = JSON.stringify(deserializado);//Con parse se deserializa, cuando se manda peticiones y se reciben esatn serializadas con stringify
+        console.log(typeof serializado);        
+    </script>    
+</body>
+</html>

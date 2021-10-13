@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="" class="crud">
+      <input type="text" id="nombre" />
+      <input type="text" name="apellido" />
+      <button class="primero">Primero</button>
+      <button id="segundo">Segundo</button>
+      <input type="submit" />
+    </form>
+    <script>
+      const $form = document.querySelector(".crud");
+      document.addEventListener("submit", (e) => {
+        if (e.target === $form) {
+          e.preventDefault();
+          //De esta forma accedemos a los valores de los inputs a traves de los name o id, tambien se puede a traves de un arraya asi e.target[n].value
+          console.log(e.target);
+          console.log(e.target[0].value);
+          console.log(e.target.apellido.value);
+        }
+      });
+      document.addEventListener("click", (e) => {
+        if (e.target.matches(".primero")) {
+          alert("primero");
+        } else if (e.target.matches("#segundo")) {
+          alert("segundo");
+        }
+      });
+    </script>
+  </body>
+</html>

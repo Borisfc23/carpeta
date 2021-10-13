@@ -1,0 +1,7 @@
+DATABASE: curso_mysqlboris
+user: root_mysql2020
+password: CursoMysql2020
+Correo electrónico: borisfc23@gmail.com
+
+El nombre de host para acceder al servidor es db4free.net y el puerto es el 3306. Puede usar phpMyAdmin en 
+nuestro sitio web para iniciar sesión en el servidor.
