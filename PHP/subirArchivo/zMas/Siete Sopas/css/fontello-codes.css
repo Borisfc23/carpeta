@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+ 
+.icon-food:before { content: '\e026'; } /* '' */
+.icon-location:before { content: '\e07a'; } /* '' */
+.icon-menu:before { content: '\e0fe'; } /* '' */
+.icon-basket:before { content: '\e73d'; } /* '' */
+.icon-user:before { content: '👤'; } /* '\1f464' */
+.icon-clock:before { content: '🕔'; } /* '\1f554' */

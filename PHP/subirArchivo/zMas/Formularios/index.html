@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;            
+        }
+        body{
+            background: #014023;
+            color:#F29B30;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;            
+        }
+        .formulario{
+            width: 320px;
+            background: #025939;
+            padding:40px 20px;
+            box-sizing: border-box;    
+            position: fixed;       
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            
+        }
+        input[type="text"],input[type="password"],input[type="email"],input[type="phone"]{
+            width: 100%;
+            background: none;
+            border:1px solid #F29B30;
+            border-radius:3px;
+            padding: 6px 15px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            color:#F29B30;
+        }
+        input[type="radio"]{
+            padding: 6px 15px;
+            box-sizing: border-box;                    
+            margin-bottom: 20px;
+        }
+        .seleccion{
+            width: 100%;
+            background: #014023;
+            border:1px solid #F29B30;
+            border-radius:3px;
+            padding: 6px 15px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            color:#F29B30;
+        }
+        input[type="submit"]{
+            background: gold;
+            width: 100%;
+            height: 25px;
+            border: none;
+            cursor: pointer;
+            color:#014023;
+            box-sizing: border-box;            
+            margin-top: 20px;
+        }
+        input[type="submit"]:hover{
+            background: orange;
+            transition: .6s;
+        }
+        ::placeholder{/* Los :: indican pseudoelementos con el fin decorativo */
+            color: aliceblue;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="formulario">
+    <form action="formulario.php" method="POST">
+        <table>
+            <tr>                
+                <td><input type="text" required placeholder="Ingrese Nombre" name="nombre" autocomplete="off"></td>
+            </tr>
+            <tr>                
+                <td><input type="password" required placeholder="Ingrese Contraseña" name="password" autocomplete="off"></td>
+            </tr>
+            <tr>                
+                <td>
+                    <input type="radio" value="f"   name="genero">Femenino
+                    <input type="radio" value="m" name="genero">Masculino
+                </td>                
+            </tr>
+            <tr>                
+                <td><input type="email" required placeholder="Ingrese Correo" name="email"></td>
+            </tr>
+            <tr>
+                <td>
+                    <select name="materia" required class="seleccion">
+                        <option selected hidden value="">MATERIAS</option>
+                        <option value="calculo">CALCULO</option>
+                        <option value="fisica">FISICA</option>
+                        <option value="database">BASE DE DATOS</option>
+                        <option value="analisis">ANALISIS SISTEMAS</option>
+                    </select>
+                    <input type="phone" required placeholder="Ingrese Telefono" name="telefono">
+                </td>
+            </tr>
+            
+        </table>
+        <input type="submit" value="Enviar">
+    </form>
+    </div>    
+</body>
+</html>

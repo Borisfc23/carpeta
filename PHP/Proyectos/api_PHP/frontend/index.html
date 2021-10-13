@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Consumiendo API-PHP con Fetch</h1>
+    <button onclick="obtener('dolar')">Dolar</button>
+    <button onclick="obtener('euro')">Euro</button>
+    <ul id="datos"></ul>
+    <script>
+      function obtener(moneda) {
+        var simbolo = "";
+        if (moneda == "dolar") {
+          simbolo = "$";
+        } else {
+          simbolo = "€";
+        }
+        fetch("http://localhost/PHP/Proyectos/api_PHP/backend/" + moneda)
+          .then((res) => res.json())
+          .then((res) => {
+            var resultado = document.getElementById("datos");
+            resultado.innerHTML = "";
+            res.forEach(({ fecha, valor }) => {
+              resultado.innerHTML += `<li>Fecha: ${fecha} - Valor: ${simbolo}${valor}</li>`;
+            });
+          })
+          .catch((err) => console.log(err));
+      }
+    </script>
+  </body>
+</html>

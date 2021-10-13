@@ -1,0 +1,79 @@
+#menu-bar{
+    display: none;
+}
+header label{
+    float: right;
+    font-size:36px ;
+    margin: 5px 0;
+    cursor: pointer;
+}
+.menu{
+    position: absolute;
+    top: 65px;
+    left: 0;
+    width: 100%;
+    height: auto;    
+    background: rgb(28, 35, 49);       
+    transition: all 0.5s;
+    transform: translateX(-100%);
+}
+.menu a{    
+    text-decoration: none;
+    display: block;
+    color: whitesmoke;
+    text-align: center;
+    height: 65px;
+    top:65px;
+    padding:25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    font-family: titulos;    
+}
+@font-face {
+    font-family:titulos;
+    src: url(../FontFace/Courier_Prime/CourierPrime-BoldItalic.ttf);
+}
+.menu a:hover{    
+    background:linear-gradient(to bottom,transparent,rgba(255, 255, 255, 0.3));    
+}
+#menu-bar:checked ~ .menu{ 
+    transform: translateX(0);
+}
+@media screen and (min-width:1074px){
+    .menu{
+        position: static;
+        width: auto;
+        height: auto;
+        transform: translateX(0%);
+        float:right;
+        display: flex;
+    }
+    .menu a{
+        border: none;        
+        padding-top: 25px;        
+    }            
+    header label{
+        display: none;
+    }
+}
+@media screen and (min-width:576px) and (max-width:1074px){    
+    .menu a{
+        border: none;        
+        padding-top: 25px;
+        height: 45px;        
+        border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+        box-sizing: border-box;        
+    }      
+}
+@media screen and (max-width:576px){   
+    .menu{
+        top:50px;
+    }    
+    header label{
+        font-size: 23px;
+    }  
+    .menu a{
+        font-size: 11px;
+        height: 30px;
+        padding: 10px 0 0 0;
+    }    
+}

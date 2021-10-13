@@ -1,0 +1,3 @@
+Para conexion a base de datos. Hay 2 formas:
+.Mysqli: Permite conectar a un Sistema gestor de BD como Mysql
+.PDO:Te permite conectarte a distintos sistemas gestores de BD como Oracle, Mysql,etc, con la diferencia de que no cuenta con todas las caracteristicas de php7

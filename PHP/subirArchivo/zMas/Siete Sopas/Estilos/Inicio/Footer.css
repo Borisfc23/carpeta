@@ -1,0 +1,45 @@
+#info{            
+    background: rgba(28, 35, 49, 0.9); 
+    color: #fff;
+    text-align: center;
+    position: relative;
+    bottom: -30px;
+}
+#info .contenedor{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;            
+    padding:5px;
+}      
+.info_siete{
+    margin: 10px 100px;
+}  
+.info_siete a{
+    display: block;
+    line-height:23px ;
+    text-decoration: none;
+    color: #fff;
+}
+.info_siete img{
+    width: 15px;
+    height: 15px;
+}
+#info .acerca{
+    font: bold 20px pieletra;
+}
+@font-face {
+    font-family:pieletra;
+    src: url(../FontFace/Courier_Prime/CourierPrime-BoldItalic.ttf);
+}
+.info_siete a:hover{
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+}
+@media screen and (max-width:576px){
+    #info .acerca{
+        font-size: 16px;
+    }
+    #info a{
+        font-size: 13px;
+    }
+}

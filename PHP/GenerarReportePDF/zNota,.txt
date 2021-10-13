@@ -1,0 +1,2 @@
+Primero instarlte composer
+Luego instalar dentre de tu carpeta de trabajo composer require mpdf/mpdf
